@@ -11,5 +11,6 @@ vim.keymap.set('i', 'jj', '<esc>')
 
 -- file editing
 vim.keymap.set('n', '<leader>ps', ':PackerSync<CR>')
-vim.keymap.set('n', '<leader>s', ':w<CR>')
+vim.keymap.set('n', '<leader>w', ':w<CR>')
 vim.keymap.set('n', '<leader>S', ':so %<CR>')
+vim.keymap.set('n', '<leader>lc', ':VimtexCompile<CR>')
