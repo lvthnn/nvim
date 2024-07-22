@@ -13,6 +13,7 @@ vim.opt.guicursor = 'n-v-i-c:block-Cursor'
 vim.opt.scrolloff = 8
 vim.opt.colorcolumn = '80'
 vim.wo.number = true
+vim.opt.termguicolors = true
 vim.wo.relativenumber = true
 
 -- spaces, tabs etc.

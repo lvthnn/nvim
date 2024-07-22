@@ -15,7 +15,6 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'ellisonleao/gruvbox.nvim'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
@@ -39,6 +38,11 @@ return require('packer').startup(function(use)
   use 'lervag/vimtex'
 
   use 'R-nvim/R.nvim'
+
+  -- themes
+  use 'ellisonleao/gruvbox.nvim'
+  use 'vim-scripts/dual.vim'
+  use 'CodeGradox/onehalf-lush'
 
   if packer_bootstrap then
     require('packer').sync()
