@@ -44,6 +44,8 @@ return require('packer').startup(function(use)
   use 'vim-scripts/dual.vim'
   use 'CodeGradox/onehalf-lush'
 
+  use 'xiyaowong/transparent.nvim'
+
   if packer_bootstrap then
     require('packer').sync()
   end
