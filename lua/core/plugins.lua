@@ -14,36 +14,45 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
+  -- install packer
   use 'wbthomason/packer.nvim'
+
+  -- set up the editor
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
   use {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig'
-  }
-  use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.4',
     requires = { { 'nvim-lua/plenary.nvim' } }
+  }
+  use 'windwp/nvim-autopairs'
+
+  -- lsp plugins
+  use {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig'
   }
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
-  use 'windwp/nvim-autopairs'
-  use 'lervag/vimtex'
 
+  -- language specific plugins
+  use 'lervag/vimtex'
   use 'R-nvim/R.nvim'
+
+  -- plugins for git support
+  use 'tpope/vim-fugitive'
+  use 'kdheepak/lazygit.nvim'
 
   -- themes
   use 'ellisonleao/gruvbox.nvim'
   use 'vim-scripts/dual.vim'
   use 'CodeGradox/onehalf-lush'
-
   use 'xiyaowong/transparent.nvim'
 
   if packer_bootstrap then
