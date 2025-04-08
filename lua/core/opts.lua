@@ -12,9 +12,10 @@ vim.opt.autoread = true
 vim.opt.guicursor = 'n-v-i-c:block-Cursor'
 vim.opt.scrolloff = 8
 vim.opt.colorcolumn = '80'
-vim.wo.number = true
+vim.opt.textwidth = 80
 vim.opt.termguicolors = true
 vim.wo.relativenumber = true
+vim.wo.number = true
 
 -- spaces, tabs etc.
 vim.opt.tabstop = 2
