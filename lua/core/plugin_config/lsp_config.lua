@@ -1,5 +1,8 @@
 require('mason').setup()
-require('mason-lspconfig').setup({ ensure_installed = { 'lua_ls', 'pyright', 'r_language_server', 'jdtls' } })
+require('mason-lspconfig').setup({
+  automatic_installation = true,
+  ensure_installed = { 'lua_ls', 'pyright', 'r_language_server', 'jdtls' },
+})
 
 local on_attach = function(_, _)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
@@ -20,8 +23,6 @@ lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       runtime = {
-        -- Tell the language server which version of Lua you're using
-        -- (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
       },
       diagnostics = {
@@ -43,7 +44,7 @@ lspconfig.lua_ls.setup {
   },
 }
 
-local servers = { 'r_language_server', 'pyright', 'jdtls', 'clangd', 'texlab' }
+local servers = { 'r_language_server', 'pyright', 'jdtls', 'texlab' }
 
 for _, server in pairs(servers) do
   lspconfig[server].setup {
@@ -52,4 +53,24 @@ for _, server in pairs(servers) do
   }
 end
 
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+local rcpp_packages = { 'Rcpp', 'RcppArmadillo', 'RcppEigen' }
+local rcpp_headers = {}
+
+for _, rcpp_package in ipairs(rcpp_packages) do
+  rcpp_header = vim.fn.system({
+    'Rscript', '-e',
+    'system.file("include", package = "' .. rcpp_package .. '")',
+  })
+
+  rcpp_header = vim.trim(rcpp_header)
+  table.insert(rcpp_headers, '-I' .. rcpp_header)
+end
+
+lspconfig.clangd.setup {
+  cmd = { 'clangd', '--completion-style=detailed', '--header-insertion=never' },
+  capabilities = capabilities,
+  init_options = {
+    compilationDatabasePath = 'build',
+    fallbackFlags = rcpp_headers
+  }
+}
