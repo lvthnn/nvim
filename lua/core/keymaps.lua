@@ -15,3 +15,8 @@ vim.keymap.set('n', '<leader>w', ':w<CR>')
 vim.keymap.set('n', '<leader>S', ':so %<CR>')
 vim.keymap.set('n', '<leader>lc', ':VimtexCompile<CR>')
 vim.keymap.set('i', '<S-Tab>', '<C-D>')
+
+vim.keymap.set('n', '<leader>d', function()
+  vim.diagnostic.open_float(nil, { focus = false })
+end, { desc = "Show diagnostic" })
+
