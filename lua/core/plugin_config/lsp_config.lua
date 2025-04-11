@@ -7,7 +7,6 @@ require('mason-lspconfig').setup({
 local on_attach = function(_, _)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
-
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
   vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
@@ -53,6 +52,7 @@ for _, server in pairs(servers) do
   }
 end
 
+-- assumes Rcpp, RcppArmadillo, and RcppEigen are installed in R
 local rcpp_packages = { 'Rcpp', 'RcppArmadillo', 'RcppEigen' }
 local rcpp_headers = {}
 
@@ -62,8 +62,8 @@ for _, rcpp_package in ipairs(rcpp_packages) do
     'system.file("include", package = "' .. rcpp_package .. '")',
   })
 
-  rcpp_header = vim.trim(rcpp_header)
-  table.insert(rcpp_headers, '-I' .. rcpp_header)
+  rcpp_header = '-I' .. vim.trim(rcpp_header)
+  table.insert(rcpp_headers, rcpp_header)
 end
 
 lspconfig.clangd.setup {
