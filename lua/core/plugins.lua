@@ -55,6 +55,9 @@ return require('packer').startup(function(use)
   use 'CodeGradox/onehalf-lush'
   use 'xiyaowong/transparent.nvim'
 
+  -- copilot support
+  use 'github/copilot.vim'
+
   if packer_bootstrap then
     require('packer').sync()
   end
