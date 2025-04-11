@@ -1,4 +1,9 @@
 vim.keymap.set(
-  'n', '<leader>cp', ':Copilot disable<CR>',
-  { noremap = true, silent = true }
+  'n', '<leader>ce', ':Copilot enable<CR>',
+  { noremap = true }
+)
+
+vim.keymap.set(
+  'n', '<leader>cd', ':Copilot disable<CR>',
+  { noremap = true }
 )
