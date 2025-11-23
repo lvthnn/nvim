@@ -25,14 +25,21 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.4',
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    requires = { { 'nvim-lua/plenary.nvim' } },
   }
   use 'windwp/nvim-autopairs'
+  use 'voldikss/vim-floaterm'
+  use 'folke/flash.nvim'
+	use({
+			"kylechui/nvim-surround",
+			tag = "*",
+			config = function()
+					require("nvim-surround").setup({ })
+			end
+	})
 
   -- lsp plugins
   use {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig'
   }
   use 'hrsh7th/nvim-cmp'
@@ -50,13 +57,11 @@ return require('packer').startup(function(use)
   use 'kdheepak/lazygit.nvim'
 
   -- themes
-  use 'ellisonleao/gruvbox.nvim'
   use 'vim-scripts/dual.vim'
   use 'CodeGradox/onehalf-lush'
   use 'xiyaowong/transparent.nvim'
-
-  -- copilot support
-  use 'github/copilot.vim'
+  use 'projekt0n/github-nvim-theme'
+  use { 'catppuccin/nvim', as = 'catppucin' }
 
   if packer_bootstrap then
     require('packer').sync()

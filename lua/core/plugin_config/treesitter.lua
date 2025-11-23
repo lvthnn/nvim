@@ -1,16 +1,21 @@
-require 'nvim-treesitter.configs'.setup {
-  ensure_installed = { 'c', 'lua', 'rust', 'cpp', 'vim', 'java', 'r' },
+local configs = require('nvim-treesitter.configs')
+local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+
+configs.setup {
+  ensure_installed = { 'c', 'lua', 'rust', 'cpp', 'vim', 'java', 'r',
+                       'markdown', 'markdown_inline', 'yaml', 'latex', 'rnoweb',
+                       'csv', 'json', 'python' },
   sync_install = false,
   auto_install = true,
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true,
-  },
+  highlight = { enable = true },
+  indent = { enable = true, },
 }
 
-local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+vim.filetype.add({
+  extension = { stan = 'stan' },
+})
+
+vim.treesitter.language.register('stan', { 'stan' })
 
 parser_config.stan = {
   install_info = {
@@ -21,9 +26,3 @@ parser_config.stan = {
     requires_generate_from_grammar = false
   },
 }
-
-vim.filetype.add({
-  extension = { stan = 'stan' },
-})
-
-vim.treesitter.language.register('stan', { 'stan' })

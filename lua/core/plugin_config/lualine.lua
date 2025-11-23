@@ -1,16 +1,28 @@
-require('lualine').setup {
+local padding = { left = 2, right = 1}
+
+require('lualine').setup({
   options = {
-    icons_enabled = true,
-    theme = 'onehalf-lush',
+    component_separators = '',
+    section_separators = { left = '', right = '' },
+    padding = { left = 5, right = 5},
   },
+
   sections = {
     lualine_a = {
-      {
-        'buffers',
-        show_filename_only = true,
-        show_filename_extension = false,
-        show_modified_status = true,
-      }
-    }
-  }
-}
+      { 'mode', padding = padding },
+    },
+    lualine_b = {
+      { 'branch', padding = padding },
+      { 'diff',   padding = padding },
+      { 'filename', padding = padding },
+    },
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {
+      { 'filetype', padding = padding },
+    },
+    lualine_z = {
+      { '%l:%c', padding = padding },
+    },
+  },
+})

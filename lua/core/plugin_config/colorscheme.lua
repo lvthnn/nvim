@@ -1,1 +1,1 @@
-vim.cmd [[ colorscheme onehalf-lush-dark ]]
+vim.cmd [[ colorscheme catppuccin-mocha ]]

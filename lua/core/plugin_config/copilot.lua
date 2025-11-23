@@ -1,3 +1,5 @@
+vim.g.copilot_enabled = false
+
 vim.keymap.set(
   'n', '<leader>ce', ':Copilot enable<CR>',
   { noremap = true }
