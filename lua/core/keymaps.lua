@@ -19,8 +19,10 @@ vim.keymap.set('n', '<S-t>h', ':tabprevious<CR>')
 vim.keymap.set('n', '<leader>vs', ':vs<CR>')
 vim.keymap.set('n', '<leader>hs', ':sp<CR>')
 
--- close buffers
-vim.keymap.set('n', '<leader>q', ':b#|bd#<CR>')
+-- close buffers (plain :bdelete is reliable; the old ':b#|bd#' dance broke
+-- whenever there was no alternate buffer to switch to)
+vim.keymap.set('n', '<leader>q', ':bdelete<CR>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>bc', ':bdelete<CR>', { desc = 'Close buffer' })
 
 -- file editing
 vim.keymap.set('n', '<leader>ps', ':PackerSync<CR>')
@@ -30,8 +32,11 @@ vim.keymap.set('n', '<leader>lc', ':VimtexCompile<CR>')
 vim.keymap.set('i', '<S-Tab>', '<C-D>')
 
 -- allow copying to clipboard
-vim.keymap.set('n', 'Y', '"+y', { noremap = true })
-vim.keymap.set('v', 'Y', '"y', { noremap = true })
+vim.keymap.set({'n', 'v'}, '<D-c>', '"+y', { noremap = true })
+vim.keymap.set({'n', 'v'}, '<D-v>', '"+p', { noremap = true })
+vim.keymap.set('i', '<D-v>', '<C-r>+', { noremap = true })
+vim.keymap.set('c', '<D-v>', '<C-r>+', { noremap = true })
+
 
 -- exit terminal insert mode normally
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })

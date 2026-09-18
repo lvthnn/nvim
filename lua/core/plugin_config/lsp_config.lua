@@ -1,10 +1,10 @@
 local on_attach = function(_, _)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
+  vim.keymap.set('n', 'grn', vim.lsp.buf.rename, {})
+  vim.keymap.set('n', 'g.', vim.lsp.buf.code_action, {})
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
+  vim.keymap.set('n', '<C-i>', vim.lsp.buf.format, { buffer = true })
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
   vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
-  vim.keymap.set('n', 'ca', vim.lsp.buf.code_action, {})
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 end
 
@@ -61,6 +61,7 @@ vim.lsp.config('clangd', {
     'clangd',
     '--completion-style=detailed',
     '--header-insertion=never',
+    '--log=error',
   },
   capabilities = capabilities,
   on_attach = on_attach,

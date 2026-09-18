@@ -21,10 +21,10 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
-  use 'nvim-treesitter/nvim-treesitter'
+  use { 'nvim-treesitter/nvim-treesitter', branch = 'main' }
   use {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.4',
+    branch = 'master',
     requires = { { 'nvim-lua/plenary.nvim' } },
   }
   use 'windwp/nvim-autopairs'
@@ -47,6 +47,16 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
+  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+
+  -- require("packer").startup(function()
+  -- use({
+  --   "stevearc/aerial.nvim",
+  --   config = function()
+  --     require("aerial").setup()
+  --   end,
+  -- })
+  -- end)
 
   -- language specific plugins
   use 'lervag/vimtex'
@@ -57,11 +67,8 @@ return require('packer').startup(function(use)
   use 'kdheepak/lazygit.nvim'
 
   -- themes
-  use 'vim-scripts/dual.vim'
-  use 'CodeGradox/onehalf-lush'
   use 'xiyaowong/transparent.nvim'
   use 'projekt0n/github-nvim-theme'
-  use { 'catppuccin/nvim', as = 'catppucin' }
 
   if packer_bootstrap then
     require('packer').sync()

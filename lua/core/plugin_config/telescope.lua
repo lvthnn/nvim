@@ -4,7 +4,7 @@ local themes = require('telescope.themes')
 
 local ivy_picker = function()
   return themes.get_ivy({
-    prompt_prefix = "> ",
+    prompt_prefix = "󰚄 ",
     results_title = false,
     layout_config = { height = 0.30 },
     winblend = 0,
@@ -19,7 +19,7 @@ vim.keymap.set('n', '<leader><leader>', function()
   builtin.find_files(ivy_picker())
 end, {})
 
-vim.keymap.set('n', '<leader>fu', function()
+vim.keymap.set('n', '<c-t>', function()
   builtin.live_grep(ivy_picker())
 end, {})
 
